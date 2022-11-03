@@ -9,6 +9,45 @@ Find the minimum number of days needed to watch all the movies.
 
 One test case  : durations = [1.9, 1.04, 1.25, 2.5, 1.75] , Answer : 3 
 
-Solution : shorturl.at/jNP14
+/**
+ *
+ * @param {*} durations Array to get as a input
+ * @returns days in INT
+ */
+function getMinDaysToWatch(durations = []) {
+  // Step 1 - Sorting the Array
+  let sortedArray = durations.sort();
+
+  let days = 0;
+  let startIndex = 0;
+  let endIndex = sortedArray.length - 1;
+  // Loop Till the array is not empty
+  while (startIndex <= endIndex) {
+    let sum = sortedArray[startIndex] + sortedArray[endIndex];
+    // If Sum Less than 3 remove first and last
+    if (sum > 1.0 && sum <= 3.0) {
+      startIndex++;
+      endIndex--;
+      days++;
+    }
+    // If Sum > 3 remove last
+    else if (sum > 3.0) {
+      endIndex--;
+      days++;
+    }
+  }
+
+  return days;
+}
+
+let durations = [1.9, 1.04, 1.25, 2.5, 1.75];
+// let durations = [3.0, 3.0, 3.0, 3.0, 3.0];
+// let durations = [3.0, 3.0, 1.4, 3.0, 1.6];
+// let durations = [1.1, 3.0, 1.4, 3.0, 1.6];
+console.log(getMinDaysToWatch(durations));
+
+
+Solution : https://codepen.io/kavitagupta972/pen/LYmPrrE
+
 
 
